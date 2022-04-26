@@ -1,15 +1,32 @@
 /// <reference types="cypress"/>
 
-context('Funcionalidade Login',() =>{
+context('Funcionalidade Login', () => {
 
-    it('Deve fazer login' , () => {
+    it('Deve fazer login', () => {
+        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.get('#username').type('aluno_ebac@teste.com')
+        cy.get('#password').type('teste@teste.com')
+        cy.get('.woocommerce-form > .button').click()
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2) > :nth-child(1)').should('contain', 'aluno_ebac')
+    })
+
+    it('Deve aparecer uma mensagem de senha incorreta', () => {
+        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.get('#username').type('aluno_ebac@teste.com')
+        cy.get('#password').type('teste@teste.co')
+        cy.get('.woocommerce-form > .button').click()
+        cy.get('.woocommerce-error > li').should('contain', 'Erro: A senha fornecida para o e-mail aluno_ebac@teste.com está incorreta. Perdeu a senha?')
+
 
 
     })
-
-    it('Não deve fazer login' , () => {
-
+    it('Deve aparecer uma mensagem de e-mail incorreto', () => {
+        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.get('#username').type('aluno_ebac@teste.comm')
+        cy.get('#password').type('teste@teste.com')
+        cy.get('.woocommerce-form > .button').click()
+        cy.get('.woocommerce-error > li').should('contain' , 'Endereço de e-mail desconhecido. Verifique novamente ou tente seu nome de usuário.' )
         
-
+     
     })
 })
