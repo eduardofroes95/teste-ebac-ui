@@ -2,6 +2,7 @@
 
 
 
+
 describe('Funcionalidade Pré-Cadastro', () => {
 
     beforeEach(() => {
@@ -10,7 +11,7 @@ describe('Funcionalidade Pré-Cadastro', () => {
     });
 
     it('deve completar o pre cadastro com sucesso', () => {
-        cy.get('#reg_email').type('eduardo295@teste.com')
+        cy.get('#reg_email').type('faker@ebac.com')
         cy.get('#reg_password').type('teste@teste.com')
         cy.get(':nth-child(4) > .button').click ()
         cy.get('.woocommerce-MyAccount-content > :nth-child(3)').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
