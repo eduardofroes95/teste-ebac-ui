@@ -4,7 +4,7 @@ const faker = require('faker');
 describe('Produtos', () => {
 
     before(() => {
-        cy.visit('produtos/')
+        cy.visit('produtos')
     });
 
     it('Deve selecionar um produto da lista', () => {
@@ -13,7 +13,7 @@ describe('Produtos', () => {
         //first()
         //contains('')
     });
-    
+
     it('Adicionar produto ao carrinho', () => {
         let quantidade = 12;
         cy.get('.button-variable-item-S').click()
@@ -24,7 +24,10 @@ describe('Produtos', () => {
         cy.get('.woocommerce-message').should('contain', quantidade + ' × “Ajax Full-Zip Sweatshirt” foram adicionados no seu carrinho.')
     });
 
-
+    it.only('Adicionar produto ao cariinho utilizando comandos customizados', () => {
+        let quantidade = 12;
+        cy.addProdutos(quantidade, 'S', 'Blue')
+    });
 
 
 
