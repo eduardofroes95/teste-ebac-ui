@@ -22,7 +22,7 @@ context('Funcionalidade Endereços - Faturamento e entrega', () => {
         cy.get('.woocommerce-message').should('contain', 'Endereço alterado com sucesso')
     });
 
-    it.only('Deve criar cadastro de faturamento com sucesso usando arquivo de dados', () => {
+    it('Deve criar cadastro de faturamento com sucesso usando arquivo de dados', () => {
         enderecoPage.editarEnderecoFaturamento(
             endereco[2].nome,
             endereco[2].sobrenome,
